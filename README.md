@@ -3,5 +3,5 @@
 
 ## Статусы заданий
 ### Задание 1
-- CurrencyExchange - DONE
+- CurrencyExchange - ✓
 - Quantity - IN PROGRESS
