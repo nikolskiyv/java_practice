@@ -1,5 +1,7 @@
-# java_practice
-Basics of the java language
-Tasks status:
-HW1:
-  CurrencyExchange
+# Основы языка java
+Материалы курса: https://mai.moscow/pages/viewpage.action?pageId=50888803
+
+## Статусы заданий
+### Задание 1
+- CurrencyExchange - IN PROGRESS
+- Quantity - IN PROGRESS
