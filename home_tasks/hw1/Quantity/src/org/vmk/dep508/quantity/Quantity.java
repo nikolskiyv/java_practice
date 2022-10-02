@@ -1,9 +1,10 @@
 package org.vmk.dep508.quantity;
 
-import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
+import com.sun.corba.se.impl.io.TypeMismatchException;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Quantity {
     private BigDecimal value;
@@ -26,39 +27,80 @@ public class Quantity {
         if (this.measure.getBase() == null) {
             if (this.measure != other_measure &&
                     this.measure != other_measure.getBase()) {
-                throw new ValueException("err");
+                throw new TypeMismatchException(String.format("Operation cannot be performed on %s and %s", this.measure, other_measure));
             }
         }
         else {
             if (this.measure.getBase() != other_measure &&
                     this.measure.getBase() != other_measure.getBase()) {
-                throw new ValueException("err");
+                throw new TypeMismatchException(String.format("Operation cannot be performed on %s and %s", this.measure, other_measure));
             }
         }
     }
 
+    private BigDecimal castValueToBaseType(Quantity quantity) {
+        return quantity.value.multiply(quantity.measure.getCoeff());
+    }
+
     public Quantity add(Quantity other) {
+        // Проверяем, что типы можно складывать
         isMeasureValid(other.measure);
-        BigDecimal new_value = new BigDecimal(String.valueOf(
-                this.value.multiply(this.measure.getCoeff())
-                        .add(
-                                other.value.multiply(other.getMeasure().getCoeff())
-                        )
-        ));
+
+        BigDecimal new_value = new BigDecimal(
+                castValueToBaseType(this).add(castValueToBaseType(other))
+                        .stripTrailingZeros().toPlainString()
+        );
         UnitOfMeasure new_measure = (this.measure.getBase() == null) ? this.measure : this.measure.getBase();
         return new Quantity(new_value, new_measure);
     }
 
-    public Quantity subtract(Quantity other) {
-        throw new NotImplementedException();
+    public Quantity subtract(Quantity other) throws LowerThanZeroException {
+        // Проверяем, что типы можно вычитать
+        isMeasureValid(other.measure);
+
+        BigDecimal new_value = new BigDecimal(
+                castValueToBaseType(this).subtract(castValueToBaseType(other))
+                        .stripTrailingZeros().toPlainString()
+        );
+
+        if (new_value.compareTo(BigDecimal.ZERO) < 0) {
+            throw new LowerThanZeroException();
+        }
+
+        UnitOfMeasure new_measure = (this.measure.getBase() == null) ? this.measure : this.measure.getBase();
+        return new Quantity(new_value, new_measure);
     }
 
-    public Quantity multiply(BigDecimal ratio) {
-        throw new NotImplementedException();
+    public Quantity multiply(BigDecimal ratio) throws LowerThanZeroException {
+        if (ratio.compareTo(BigDecimal.ZERO) < 0) {
+            throw new LowerThanZeroException();
+        }
+
+        BigDecimal new_value = new BigDecimal(
+                castValueToBaseType(this).multiply(ratio)
+                        .stripTrailingZeros().toPlainString()
+        );
+
+        UnitOfMeasure new_measure = (this.measure.getBase() == null) ? this.measure : this.measure.getBase();
+        return new Quantity(new_value, new_measure);
     }
 
-    public Quantity devide(BigDecimal ratio) {
-        throw new NotImplementedException();
+    public Quantity divide(BigDecimal ratio) throws ZeroDivisionException, LowerThanZeroException {
+        if (ratio.compareTo(BigDecimal.ZERO) == 0) {
+            throw new ZeroDivisionException();
+        }
+
+        if (ratio.compareTo(BigDecimal.ZERO) < 0) {
+            throw new LowerThanZeroException();
+        }
+
+        BigDecimal new_value = new BigDecimal(
+                castValueToBaseType(this).divide(ratio, 3, RoundingMode.HALF_UP)
+                        .stripTrailingZeros().toPlainString()
+        );
+
+        UnitOfMeasure new_measure = (this.measure.getBase() == null) ? this.measure : this.measure.getBase();
+        return new Quantity(new_value, new_measure);
     }
 
     public String toString() {
