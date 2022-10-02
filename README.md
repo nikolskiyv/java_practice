@@ -4,7 +4,7 @@
 ## Статусы заданий
 ### Задание 1
 - CurrencyExchange - ✓
-- Quantity - IN PROGRESS
+- Quantity - ✓
 ### Задание 2
 - Java Collections
 ### Задание 3
