@@ -1,5 +1,3 @@
-package org.vmk.dep508.cer;
-
 import java.math.BigDecimal;
 import java.util.Currency;
 
