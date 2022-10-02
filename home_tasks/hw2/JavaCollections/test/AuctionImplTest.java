@@ -1,5 +1,3 @@
-package org.vmk.dep508.collections.auction;
-
 import org.junit.*;
 
 import java.math.BigDecimal;
