@@ -1,5 +1,3 @@
-package org.vmk.dep508.quantity;
-
 import com.sun.corba.se.impl.io.TypeMismatchException;
 import org.junit.After;
 import org.junit.Before;

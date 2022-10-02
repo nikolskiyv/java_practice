@@ -1,7 +1,4 @@
-package org.vmk.dep508.quantity;
-
 import com.sun.corba.se.impl.io.TypeMismatchException;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

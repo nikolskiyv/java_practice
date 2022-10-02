@@ -1,5 +1,3 @@
-package org.vmk.dep508.quantity;
-
 import java.math.BigDecimal;
 
 public enum UnitOfMeasure {
