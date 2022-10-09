@@ -1,3 +1,6 @@
+import auction.Auction;
+import auction.AuctionImpl;
+import auction.ProductNotFoundException;
 import org.junit.*;
 
 import java.math.BigDecimal;
