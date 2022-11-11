@@ -6,7 +6,7 @@
 - CurrencyExchange - ✓
 - Quantity - ✓
 ### Задание 2
-- Java Collections
+- Java Collections - IN PROGRESS
 ### Задание 3
 - Threads
 ### Задание 4
