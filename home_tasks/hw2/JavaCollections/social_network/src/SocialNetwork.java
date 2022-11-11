@@ -1,10 +1,7 @@
-package sn;
-
-import java.util.List;
+import java.util.Set;
 
 /* Социальная сеть */
 public interface SocialNetwork {
-
     /* Добавить участника */
     void addPerson(String name);
 
@@ -16,5 +13,6 @@ public interface SocialNetwork {
        level = 2 - непосредственные "друзья" + "друзья" "друзей"
        итд.
      */
-    List<String> getFriends(int level);
+    Set<String> getFriends(String name, int level);
 }
+
