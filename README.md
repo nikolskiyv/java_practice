@@ -12,6 +12,6 @@
 ### Задание 4
 - Stream API
 ### Задание 5
-- Java IO
+- Java IO - ✓
 ### Задание 6
 - Java and DB
