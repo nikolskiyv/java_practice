@@ -8,7 +8,7 @@
 ### Задание 2
 - social network - ✓
 ### Задание 3
-- Threads (page requests) - ✓
+- Threads (page requests) - ✓ (поправить замечания)
 ### Задание 4
 - Stream API
 ### Задание 5
