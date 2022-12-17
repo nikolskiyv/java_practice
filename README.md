@@ -14,4 +14,4 @@
 ### Задание 5
 - Java IO - ✓
 ### Задание 6
-- Java and DB
+- Java and DB - ✓
