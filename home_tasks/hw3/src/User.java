@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class User implements Runnable {
+public class User {
     private final Page page;
     private final String name;
 
@@ -11,7 +11,6 @@ public class User implements Runnable {
         this.name = name;
     }
 
-    @Override
     public void run() {
         Random random = new Random();
         List<String> links = new ArrayList<>(page.getLinksWithClicks().keySet());
