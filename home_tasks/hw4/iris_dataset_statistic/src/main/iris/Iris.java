@@ -1,4 +1,4 @@
-package org.vmk.dep508.stream.iris;
+package iris;
 
 /**
  * Created by Asus on 10/7/2018.

@@ -1,4 +1,4 @@
-package org.vmk.dep508.stream.iris;
+package iris;
 
 import java.io.IOException;
 import java.util.List;

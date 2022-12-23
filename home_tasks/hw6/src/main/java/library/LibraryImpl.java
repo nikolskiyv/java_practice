@@ -53,14 +53,32 @@ public class LibraryImpl implements Library {
 
     @Override
     public void addAbonent(Student student) {
-        String query = "insert into abonents (student_id, student_name) values("+student.getId()+", '"+student.getName()+"')";
-        insertQuery(query);
+        String query = "insert into ABONENTS(student_id, student_name) values("+student.getId()+", '"+student.getName()+"')";
+        try (Connection ignored = getConnection()) {
+            try(Statement stmt = getConnection().createStatement()) {
+                stmt.execute(query);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void borrowBook(Book book, Student student) {
         String query = "update books set student_id = ? where book_id = ?";
-        updateQuery(query, student.getId(), book.getId());
+        try (Connection ignored = getConnection()) {
+            try(PreparedStatement stmt = getConnection().prepareStatement(query)) {
+                stmt.setInt(1, student.getId());
+                stmt.setInt(2, book.getId());
+                stmt.execute();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

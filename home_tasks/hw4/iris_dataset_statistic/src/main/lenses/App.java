@@ -1,4 +1,4 @@
-package org.vmk.dep508.stream.lenses;
+package lenses;
 
 
 import java.io.IOException;
