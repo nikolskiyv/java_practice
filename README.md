@@ -8,9 +8,9 @@
 ### Задание 2
 - social network - ✓
 ### Задание 3
-- Threads (page requests) - ✓ (поправить замечания)
+- Threads (page requests) - ✓
 ### Задание 4
-- Stream API
+- Stream API - ✓
 ### Задание 5
 - Java IO - ✓
 ### Задание 6
